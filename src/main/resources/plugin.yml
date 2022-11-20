@@ -1,0 +1,6 @@
+name: PlayerLoginTrackerApplication
+version: 1.0.0
+main: org.icarus.minecraft.plugin.PlayerLoginTrackerApplication
+description: Track players connexion
+author: icarus.io
+api-version: 1.19

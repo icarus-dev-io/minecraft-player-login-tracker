@@ -1,7 +1,13 @@
 package org.icarus.minecraft.plugin;
 
-public class PlayerLoginTrackerApplication {
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class PlayerLoginTrackerApplication extends JavaPlugin implements Listener {
+
+    @Override
+    public void onEnable() {
+        Bukkit.getPluginManager().registerEvents(new FisrtCustomEvent(), this);
     }
 }
