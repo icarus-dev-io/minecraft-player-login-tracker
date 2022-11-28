@@ -2449,6 +2449,41 @@ public class PlayerForTest implements Player {
     }
 
     @Override
+    public int getWardenWarningCooldown() {
+        return 0;
+    }
+
+    @Override
+    public void setWardenWarningCooldown(int i) {
+
+    }
+
+    @Override
+    public int getWardenTimeSinceLastWarning() {
+        return 0;
+    }
+
+    @Override
+    public void setWardenTimeSinceLastWarning(int i) {
+
+    }
+
+    @Override
+    public int getWardenWarningLevel() {
+        return 0;
+    }
+
+    @Override
+    public void setWardenWarningLevel(int i) {
+
+    }
+
+    @Override
+    public void increaseWardenWarningLevel() {
+
+    }
+
+    @Override
     public @NotNull Spigot spigot() {
         return null;
     }
