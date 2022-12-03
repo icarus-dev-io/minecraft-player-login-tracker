@@ -7,14 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
-import java.util.logging.Logger;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 @DisplayName("Player event repository in memory test")
 class PlayerEventRepositoryInMemoryTest {
 
-    private final PlayerEventRepositoryInMemory playerEventRepositoryInMemory = new PlayerEventRepositoryInMemory(Logger.getGlobal());
+    private final PlayerEventRepositoryInMemory playerEventRepositoryInMemory = new PlayerEventRepositoryInMemory();
 
     @Test
     @DisplayName("should not throw exception")
