@@ -8,21 +8,20 @@ import org.icarus.minecraft.plugin.core.PlayerService;
 import org.icarus.minecraft.plugin.events.MinecraftPlayerMapper;
 import org.icarus.minecraft.plugin.events.PlayerJoinEventHandler;
 import org.icarus.minecraft.plugin.events.PlayerQuitEventHandler;
-import org.icarus.minecraft.plugin.infra.repositories.PlayerEventRepositoryInMemory;
+import org.icarus.minecraft.plugin.infra.repositories.PlayerEventRepositorySqlite;
+import org.icarus.minecraft.plugin.infra.repositories.SqliteDataBase;
 
 public class PlayerLoginTrackerApplication extends JavaPlugin implements Listener {
-    private final MinecraftPlayerMapper minecraftPlayerMapper;
-    private final PlayerService playerService;
-
-    public PlayerLoginTrackerApplication() {
-        this.minecraftPlayerMapper = new MinecraftPlayerMapper();
-        final PlayerEventRepository playerEventRepository = new PlayerEventRepositoryInMemory();
-        this.playerService = new PlayerService(playerEventRepository);
-    }
 
     @Override
     public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinEventHandler(this.minecraftPlayerMapper, this.playerService), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerQuitEventHandler(this.minecraftPlayerMapper, this.playerService), this);
+        final SqliteDataBase sqliteDataBase = new SqliteDataBase();
+        sqliteDataBase.createTable();
+        final MinecraftPlayerMapper minecraftPlayerMapper = new MinecraftPlayerMapper();
+        final PlayerEventRepository playerEventRepository = new PlayerEventRepositorySqlite(sqliteDataBase);
+        final PlayerService playerService = new PlayerService(playerEventRepository);
+
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinEventHandler(minecraftPlayerMapper, playerService), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuitEventHandler(minecraftPlayerMapper, playerService), this);
     }
 }
